@@ -45,6 +45,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,11 +64,29 @@
     <Compile Include="ajouterCoursForm.Designer.cs">
       <DependentUpon>ajouterCoursForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagerCours.cs" />
     <Compile Include="menuForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="menuForm.Designer.cs">
       <DependentUpon>menuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelScolaire.Context.cs" />
+    <Compile Include="ModelScolaire.Context1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelScolaire.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelScolaire.cs" />
+    <Compile Include="ModelScolaire.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelScolaire.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelScolaire1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelScolaire.tt</DependentUpon>
     </Compile>
     <Compile Include="modifierDetruireForm.cs">
       <SubType>Form</SubType>
@@ -76,6 +96,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tbl_cours.cs">
+      <DependentUpon>ModelScolaire.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_etudiant.cs">
+      <DependentUpon>ModelScolaire.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_resultat.cs">
+      <DependentUpon>ModelScolaire.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ajouterCoursForm.resx">
       <DependentUpon>ajouterCoursForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,6 +123,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="ModelScolaire.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelScolaire.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelScolaire.edmx.diagram">
+      <DependentUpon>ModelScolaire.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -107,6 +143,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelScolaire.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelScolaire.edmx</DependentUpon>
+      <LastGenOutput>ModelScolaire.Context1.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelScolaire.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelScolaire.edmx</DependentUpon>
+      <LastGenOutput>ModelScolaire1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

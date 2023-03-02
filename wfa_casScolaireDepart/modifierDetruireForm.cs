@@ -16,5 +16,18 @@ namespace wfa_casScolaireDepart
         {
             InitializeComponent();
         }
+
+        private void remplirComboBox()
+        {
+            var MonManger = new ManagerCours();
+            nomCoursComboBox.DataSource = MonManger.listerCours();
+            nomCoursComboBox.ValueMember = "no_cours";
+            nomCoursComboBox.DisplayMember = "nom_cours";
+        }
+
+        private void modifierDetruireForm_Load(object sender, EventArgs e)
+        {
+            remplirComboBox();
+        }
     }
 }

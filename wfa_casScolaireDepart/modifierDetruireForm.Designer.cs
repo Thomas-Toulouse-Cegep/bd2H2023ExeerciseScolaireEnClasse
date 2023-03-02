@@ -174,15 +174,16 @@
             this.detruireButton.Text = "Détruire";
             this.detruireButton.UseVisualStyleBackColor = true;
             // 
-            // modifierDetruireForms
+            // modifierDetruireForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 449);
             this.Controls.Add(this.rechercherGroupBox);
             this.Controls.Add(this.CoursGroupBox);
-            this.Name = "modifierDetruireForms";
+            this.Name = "modifierDetruireForm";
             this.Text = "Modifier/detruire un cours";
+            this.Load += new System.EventHandler(this.modifierDetruireForm_Load);
             this.rechercherGroupBox.ResumeLayout(false);
             this.rechercherGroupBox.PerformLayout();
             this.CoursGroupBox.ResumeLayout(false);
