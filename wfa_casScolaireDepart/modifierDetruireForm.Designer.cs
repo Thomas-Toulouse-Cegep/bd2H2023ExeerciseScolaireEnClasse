@@ -106,6 +106,7 @@
             this.modifierButton.TabIndex = 7;
             this.modifierButton.Text = "Modifier";
             this.modifierButton.UseVisualStyleBackColor = true;
+            this.modifierButton.Click += new System.EventHandler(this.modifierButton_Click);
             // 
             // label1
             // 
@@ -157,6 +158,7 @@
             // 
             // noCoursTextBox
             // 
+            this.noCoursTextBox.Enabled = false;
             this.noCoursTextBox.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.noCoursTextBox.Location = new System.Drawing.Point(233, 24);
             this.noCoursTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
