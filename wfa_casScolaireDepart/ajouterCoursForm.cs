@@ -19,7 +19,10 @@ namespace wfa_casScolaireDepart
 
         private void ajouterCoursForm_Load(object sender, EventArgs e)
         {
+        }
 
+        private void ajouterButton_Click(object sender, EventArgs e)
+        {
         }
     }
 }

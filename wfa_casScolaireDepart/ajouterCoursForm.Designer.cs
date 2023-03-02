@@ -42,7 +42,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.label1.Location = new System.Drawing.Point(36, 136);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 22);
+            this.label1.Size = new System.Drawing.Size(119, 34);
             this.label1.TabIndex = 20;
             this.label1.Text = "Pondération";
             // 
@@ -103,6 +103,7 @@
             this.ajouterButton.TabIndex = 14;
             this.ajouterButton.Text = "Ajouter";
             this.ajouterButton.UseVisualStyleBackColor = true;
+            this.ajouterButton.Click += new System.EventHandler(this.ajouterButton_Click);
             // 
             // ajouterCoursForm
             // 

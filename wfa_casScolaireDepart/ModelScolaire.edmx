@@ -178,7 +178,7 @@
           <End Role="tbl_cours" Type="Self.tbl_cours" Multiplicity="*" />
           <End Role="tbl_cours1" Type="Self.tbl_cours" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="TT_BDscolaireEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TT_BDscolaireEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbl_cours" EntityType="Self.tbl_cours" />
           <EntitySet Name="tbl_etudiant" EntityType="Self.tbl_etudiant" />
           <EntitySet Name="tbl_resultat" EntityType="Self.tbl_resultat" />
@@ -200,7 +200,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TT_BDscolaireModelStoreContainer" CdmEntityContainer="TT_BDscolaireEntities">
+        <EntityContainerMapping StorageEntityContainer="TT_BDscolaireModelStoreContainer" CdmEntityContainer="TT_BDscolaireEntities1">
           <EntitySetMapping Name="tbl_cours">
             <EntityTypeMapping TypeName="TT_BDscolaireModel.tbl_cours">
               <MappingFragment StoreEntitySet="tbl_cours">
