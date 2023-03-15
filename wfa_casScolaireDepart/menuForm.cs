@@ -28,5 +28,11 @@ namespace wfa_casScolaireDepart
             modifierDetruireForm maForme = new modifierDetruireForm();
             maForme.ShowDialog();
         }
+
+        private void afficherLesCoursDunEtudiantToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AfficherCourEtudiant afficherCourEtudiant = new AfficherCourEtudiant();
+            afficherCourEtudiant.ShowDialog();
+        }
     }
 }
