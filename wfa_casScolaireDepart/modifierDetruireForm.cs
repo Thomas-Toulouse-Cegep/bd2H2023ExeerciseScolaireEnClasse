@@ -12,6 +12,8 @@ namespace wfa_casScolaireDepart
 {
     public partial class modifierDetruireForm : Form
     {
+        private tbl_cours coursNonModif;
+
         public modifierDetruireForm()
         {
             InitializeComponent();
@@ -33,7 +35,9 @@ namespace wfa_casScolaireDepart
         private void nomCoursComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var MonManger = new ManagerCours();
-            tbl_cours cours = MonManger.GetCoursInformation(nomCoursComboBox.SelectedValue.ToString());
+            tbl_cours cours =
+                MonManger.GetCoursInformation(nomCoursComboBox.SelectedValue.ToString());
+            coursNonModif = cours;
             noCoursTextBox.Text = cours.no_cours;
             nomCoursTextBox.Text = cours.nom_cours;
             ponderationTextBox.Text = cours.pond;
@@ -47,6 +51,16 @@ namespace wfa_casScolaireDepart
             coursModifier.nom_cours = nomCoursTextBox.Text;
             coursModifier.pond = ponderationTextBox.Text;
             int nbDeligneAffectee = MonManger.ModifierCours(coursModifier);
+        }
+
+        private void btnModiferAvecattach_Click(object sender, EventArgs e)
+        {
+            var MonManger = new ManagerCours();
+            tbl_cours coursModifier = new tbl_cours();
+            coursModifier.no_cours = noCoursTextBox.Text;
+            coursModifier.nom_cours = nomCoursTextBox.Text;
+            coursModifier.pond = ponderationTextBox.Text;
+            int nbDeligneAffectee = MonManger.ModifierCours(coursModifier, coursNonModif);
         }
     }
 }

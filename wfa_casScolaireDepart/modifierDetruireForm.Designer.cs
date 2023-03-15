@@ -40,6 +40,7 @@
             this.noCoursLabel = new System.Windows.Forms.Label();
             this.noCoursTextBox = new System.Windows.Forms.TextBox();
             this.detruireButton = new System.Windows.Forms.Button();
+            this.btnModiferAvecattach = new System.Windows.Forms.Button();
             this.rechercherGroupBox.SuspendLayout();
             this.CoursGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +80,8 @@
             // 
             // CoursGroupBox
             // 
+            this.CoursGroupBox.AutoSize = true;
+            this.CoursGroupBox.Controls.Add(this.btnModiferAvecattach);
             this.CoursGroupBox.Controls.Add(this.modifierButton);
             this.CoursGroupBox.Controls.Add(this.label1);
             this.CoursGroupBox.Controls.Add(this.ponderationTextBox);
@@ -91,7 +94,7 @@
             this.CoursGroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CoursGroupBox.Name = "CoursGroupBox";
             this.CoursGroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.CoursGroupBox.Size = new System.Drawing.Size(557, 255);
+            this.CoursGroupBox.Size = new System.Drawing.Size(557, 293);
             this.CoursGroupBox.TabIndex = 9;
             this.CoursGroupBox.TabStop = false;
             this.CoursGroupBox.Text = "Faites votre modification";
@@ -102,7 +105,7 @@
             this.modifierButton.Location = new System.Drawing.Point(43, 182);
             this.modifierButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.modifierButton.Name = "modifierButton";
-            this.modifierButton.Size = new System.Drawing.Size(151, 44);
+            this.modifierButton.Size = new System.Drawing.Size(212, 44);
             this.modifierButton.TabIndex = 7;
             this.modifierButton.Text = "Modifier";
             this.modifierButton.UseVisualStyleBackColor = true;
@@ -177,6 +180,18 @@
             this.detruireButton.Text = "Détruire";
             this.detruireButton.UseVisualStyleBackColor = true;
             // 
+            // btnModiferAvecattach
+            // 
+            this.btnModiferAvecattach.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnModiferAvecattach.Location = new System.Drawing.Point(43, 230);
+            this.btnModiferAvecattach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnModiferAvecattach.Name = "btnModiferAvecattach";
+            this.btnModiferAvecattach.Size = new System.Drawing.Size(212, 44);
+            this.btnModiferAvecattach.TabIndex = 8;
+            this.btnModiferAvecattach.Text = "Modifier avec Attach";
+            this.btnModiferAvecattach.UseVisualStyleBackColor = true;
+            this.btnModiferAvecattach.Click += new System.EventHandler(this.btnModiferAvecattach_Click);
+            // 
             // modifierDetruireForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -192,6 +207,7 @@
             this.CoursGroupBox.ResumeLayout(false);
             this.CoursGroupBox.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -209,5 +225,6 @@
         private System.Windows.Forms.Label noCoursLabel;
         private System.Windows.Forms.TextBox noCoursTextBox;
         private System.Windows.Forms.Button detruireButton;
+        private System.Windows.Forms.Button btnModiferAvecattach;
     }
 }
