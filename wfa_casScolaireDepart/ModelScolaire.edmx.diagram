@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dae563c57b0f49308cbbcaf19ca36f70" Name="Diagram1">
-        <EntityTypeShape EntityType="TT_BDscolaireModel.tbl_cours" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+      <Diagram DiagramId="dae563c57b0f49308cbbcaf19ca36f70" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="TT_BDscolaireModel.tbl_cours" Width="1.5" PointX="3.375" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TT_BDscolaireModel.tbl_etudiant" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="TT_BDscolaireModel.tbl_resultat" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="TT_BDscolaireModel.FK_tbl_resultat_tbl_cours" ManuallyRouted="false" />

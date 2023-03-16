@@ -16,5 +16,17 @@ namespace wfa_casScolaireDepart
         {
             InitializeComponent();
         }
+
+        private void btnAppelStandard_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnOutput_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

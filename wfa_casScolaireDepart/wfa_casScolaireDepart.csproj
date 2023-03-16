@@ -92,6 +92,9 @@
     <Compile Include="listerCoursUnEtudiant_Result.cs">
       <DependentUpon>ModelScolaire.tt</DependentUpon>
     </Compile>
+    <Compile Include="listerSelonNom_Result.cs">
+      <DependentUpon>ModelScolaire.tt</DependentUpon>
+    </Compile>
     <Compile Include="ManagerCours.cs" />
     <Compile Include="ManagerResultat.cs" />
     <Compile Include="menuForm.cs">
@@ -151,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="modifierDetruireForm.resx">
       <DependentUpon>modifierDetruireForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParametreReturnOutputForm.resx">
+      <DependentUpon>ParametreReturnOutputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

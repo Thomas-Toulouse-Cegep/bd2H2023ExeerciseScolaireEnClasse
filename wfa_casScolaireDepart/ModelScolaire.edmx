@@ -89,8 +89,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="compterCours" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="session" Type="char" Mode="In" />
+        </Function>
+        <Function Name="compterCoursOutPut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="session" Type="char" Mode="In" />
+          <Parameter Name="nbre_cours" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="listerCoursUnEtudiant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="no_da" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="listerSelonNom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nom" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="TT_BDscolaireModelStoreContainer">
           <EntitySet Name="tbl_cours" EntityType="Self.tbl_cours" Schema="dbo" store:Type="Tables" />
@@ -200,7 +210,17 @@
           <Parameter Name="no_da" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="listerCoursUnEtudiant1" ReturnType="Collection(TT_BDscolaireModel.listerCoursUnEtudiant_Result)">
-            <Parameter Name="no_da" Mode="In" Type="String" />
+          <Parameter Name="no_da" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="compterCours" ReturnType="Collection(Int32)">
+            <Parameter Name="session" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="compterCoursOutPut">
+            <Parameter Name="session" Mode="In" Type="String" />
+            <Parameter Name="nbre_cours" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="listerSelonNom" ReturnType="Collection(TT_BDscolaireModel.listerSelonNom_Result)">
+            <Parameter Name="nom" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="listerCoursUnEtudiant_Result">
@@ -209,6 +229,12 @@
           <Property Type="String" Name="no_cours" Nullable="false" MaxLength="8" />
           <Property Type="String" Name="nom_cours" Nullable="false" MaxLength="50" />
           <Property Type="Int16" Name="note" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="listerSelonNom_Result">
+          <Property Type="String" Name="no_da" Nullable="false" MaxLength="7" />
+          <Property Type="String" Name="nom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prenom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -272,6 +298,18 @@
                 <ScalarProperty Name="no_cours" ColumnName="no_cours" />
                 <ScalarProperty Name="nom_cours" ColumnName="nom_cours" />
                 <ScalarProperty Name="note" ColumnName="note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="compterCours" FunctionName="TT_BDscolaireModel.Store.compterCours" />
+          <FunctionImportMapping FunctionImportName="compterCoursOutPut" FunctionName="TT_BDscolaireModel.Store.compterCoursOutPut" />
+          <FunctionImportMapping FunctionImportName="listerSelonNom" FunctionName="TT_BDscolaireModel.Store.listerSelonNom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TT_BDscolaireModel.listerSelonNom_Result">
+                <ScalarProperty Name="no_da" ColumnName="no_da" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="email" ColumnName="email" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
