@@ -40,15 +40,6 @@ namespace wfa_casScolaireDepart
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listerCoursUnEtudiant_Result>("listerCoursUnEtudiant", no_daParameter);
         }
     
-        public virtual ObjectResult<listerCoursUnEtudiant_Result> listerCoursUnEtudiant1(string no_da)
-        {
-            var no_daParameter = no_da != null ?
-                new ObjectParameter("no_da", no_da) :
-                new ObjectParameter("no_da", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listerCoursUnEtudiant_Result>("listerCoursUnEtudiant1", no_daParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> compterCours(string session)
         {
             var sessionParameter = session != null ?

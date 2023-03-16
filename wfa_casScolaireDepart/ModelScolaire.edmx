@@ -209,18 +209,15 @@
           <FunctionImport Name="listerCoursUnEtudiant" ReturnType="Collection(TT_BDscolaireModel.listerCoursUnEtudiant_Result)">
           <Parameter Name="no_da" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="listerCoursUnEtudiant1" ReturnType="Collection(TT_BDscolaireModel.listerCoursUnEtudiant_Result)">
-          <Parameter Name="no_da" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="compterCours" ReturnType="Collection(Int32)">
-            <Parameter Name="session" Mode="In" Type="String" />
+          <Parameter Name="session" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="compterCoursOutPut">
             <Parameter Name="session" Mode="In" Type="String" />
             <Parameter Name="nbre_cours" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="listerSelonNom" ReturnType="Collection(TT_BDscolaireModel.listerSelonNom_Result)">
-            <Parameter Name="nom" Mode="In" Type="String" />
+          <Parameter Name="nom" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="listerCoursUnEtudiant_Result">
@@ -280,17 +277,6 @@
             </EndProperty>
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="listerCoursUnEtudiant" FunctionName="TT_BDscolaireModel.Store.listerCoursUnEtudiant">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TT_BDscolaireModel.listerCoursUnEtudiant_Result">
-                <ScalarProperty Name="prenom" ColumnName="prenom" />
-                <ScalarProperty Name="nom" ColumnName="nom" />
-                <ScalarProperty Name="no_cours" ColumnName="no_cours" />
-                <ScalarProperty Name="nom_cours" ColumnName="nom_cours" />
-                <ScalarProperty Name="note" ColumnName="note" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="listerCoursUnEtudiant1" FunctionName="TT_BDscolaireModel.Store.listerCoursUnEtudiant">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TT_BDscolaireModel.listerCoursUnEtudiant_Result">
                 <ScalarProperty Name="prenom" ColumnName="prenom" />

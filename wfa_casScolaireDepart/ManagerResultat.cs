@@ -14,7 +14,7 @@ namespace wfa_casScolaireDepart
             {
                 using (var context = new TT_BDscolaireEntities1())
                 {
-                    return context.listerCoursUnEtudiant1(no_da).ToList();
+                    return context.listerCoursUnEtudiant(no_da).ToList();
                 }
             }
             catch (Exception)

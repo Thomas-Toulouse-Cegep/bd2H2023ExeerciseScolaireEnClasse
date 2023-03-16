@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dark.Net;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,9 @@ namespace wfa_casScolaireDepart
 {
     public partial class modifierDetruireForm : Form
     {
+        private Color clrBackground = Color.FromArgb(32, 32, 32);
+        private Color clrFont = Color.White;
+        private Color clrTbBack = Color.FromArgb(23, 23, 23);
         private tbl_cours coursNonModif;
 
         public modifierDetruireForm()
@@ -29,7 +33,19 @@ namespace wfa_casScolaireDepart
 
         private void modifierDetruireForm_Load(object sender, EventArgs e)
         {
+            this.ForeColor = clrFont;
+            this.BackColor = clrBackground;
+            //Now for every special-control that does need an extra color / property to be set use something like this
+            foreach (TextBox tb in this.Controls.OfType<TextBox>())
+            {
+                tb.BackColor = clrTbBack;
+                //Maybe do more here...
+            }
+            //You could now add more controls in a similar fashion.
+            this.Invalidate(); //Forces a re-draw of your controls / form
+            DarkNet.Instance.SetWindowThemeForms(this, Theme.Dark);
             remplirComboBox();
+            nomCoursComboBox.SelectedItem = null;
         }
 
         private void nomCoursComboBox_SelectionChangeCommitted(object sender, EventArgs e)
@@ -61,6 +77,10 @@ namespace wfa_casScolaireDepart
             coursModifier.nom_cours = nomCoursTextBox.Text;
             coursModifier.pond = ponderationTextBox.Text;
             int nbDeligneAffectee = MonManger.ModifierCours(coursModifier, coursNonModif);
+        }
+
+        private void nomCoursComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }
