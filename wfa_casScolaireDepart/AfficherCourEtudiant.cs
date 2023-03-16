@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace wfa_casScolaireDepart
 {
@@ -18,6 +19,16 @@ namespace wfa_casScolaireDepart
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnAfficherLesCours_Click(object sender, EventArgs e)
+        {
+            var mangerResultat = new ManagerResultat();
+            dataGridView1.DataSource = mangerResultat.listerCoursUnEtudiant_Results(txtNoDa.Text);
+        }
+
+        private void AfficherCourEtudiant_Load(object sender, EventArgs e)
         {
         }
     }

@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace wfa_casScolaireDepart
+{
+    public class ManagerResultat
+    {
+        public List<listerCoursUnEtudiant_Result> listerCoursUnEtudiant_Results(string no_da)
+        {
+            try
+            {
+                using (var context = new TT_BDscolaireEntities1())
+                {
+                    return context.listerCoursUnEtudiant1(no_da).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+    }
+}

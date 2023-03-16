@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TT_BDscolaireModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TT_BDscolaireModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_cours">
           <Key>
             <PropertyRef Name="no_cours" />
@@ -89,6 +89,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="listerCoursUnEtudiant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="no_da" Type="nchar" Mode="In" />
+        </Function>
         <EntityContainer Name="TT_BDscolaireModelStoreContainer">
           <EntitySet Name="tbl_cours" EntityType="Self.tbl_cours" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_etudiant" EntityType="Self.tbl_etudiant" Schema="dbo" store:Type="Tables" />
@@ -111,8 +114,7 @@
             <End Role="tbl_resultat" EntitySet="tbl_resultat" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TT_BDscolaireModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -194,7 +196,20 @@
             <End Role="tbl_cours" EntitySet="tbl_cours" />
             <End Role="tbl_cours1" EntitySet="tbl_cours" />
           </AssociationSet>
+          <FunctionImport Name="listerCoursUnEtudiant" ReturnType="Collection(TT_BDscolaireModel.listerCoursUnEtudiant_Result)">
+          <Parameter Name="no_da" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="listerCoursUnEtudiant1" ReturnType="Collection(TT_BDscolaireModel.listerCoursUnEtudiant_Result)">
+            <Parameter Name="no_da" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="listerCoursUnEtudiant_Result">
+          <Property Type="String" Name="prenom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="no_cours" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="nom_cours" Nullable="false" MaxLength="50" />
+          <Property Type="Int16" Name="note" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -238,6 +253,28 @@
               <ScalarProperty Name="no_cours" ColumnName="no_coursPrealable" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="listerCoursUnEtudiant" FunctionName="TT_BDscolaireModel.Store.listerCoursUnEtudiant">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TT_BDscolaireModel.listerCoursUnEtudiant_Result">
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="no_cours" ColumnName="no_cours" />
+                <ScalarProperty Name="nom_cours" ColumnName="nom_cours" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="listerCoursUnEtudiant1" FunctionName="TT_BDscolaireModel.Store.listerCoursUnEtudiant">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TT_BDscolaireModel.listerCoursUnEtudiant_Result">
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="no_cours" ColumnName="no_cours" />
+                <ScalarProperty Name="nom_cours" ColumnName="nom_cours" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dark.Net;
 
 namespace wfa_casScolaireDepart
 {
@@ -15,11 +16,13 @@ namespace wfa_casScolaireDepart
         public menuForm()
         {
             InitializeComponent();
+            DarkNet.Instance.SetWindowThemeForms(this, Theme.Dark);
         }
 
         private void ajouterUnCoursToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ajouterCoursForm maForme = new ajouterCoursForm();
+            DarkNet.Instance.SetWindowThemeForms(maForme, Theme.Dark);
             maForme.ShowDialog();
         }
 
@@ -33,6 +36,10 @@ namespace wfa_casScolaireDepart
         {
             AfficherCourEtudiant afficherCourEtudiant = new AfficherCourEtudiant();
             afficherCourEtudiant.ShowDialog();
+        }
+
+        private void menuForm_Load(object sender, EventArgs e)
+        {
         }
     }
 }

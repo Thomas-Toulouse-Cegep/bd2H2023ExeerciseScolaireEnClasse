@@ -55,6 +55,7 @@
             this.btnAfficherLesCours.TabIndex = 1;
             this.btnAfficherLesCours.Text = "Afficher";
             this.btnAfficherLesCours.UseVisualStyleBackColor = true;
+            this.btnAfficherLesCours.Click += new System.EventHandler(this.btnAfficherLesCours_Click);
             // 
             // dataGridView1
             // 
@@ -85,6 +86,7 @@
             this.Controls.Add(this.lbNoDa);
             this.Name = "AfficherCourEtudiant";
             this.Text = "AfficherCourEtudiant";
+            this.Load += new System.EventHandler(this.AfficherCourEtudiant_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
