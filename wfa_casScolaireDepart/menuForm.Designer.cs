@@ -34,6 +34,7 @@
             this.modifierdétruireUnCoursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherLesCoursDunEtudiantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.paramètreReturnOutputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +57,8 @@
             this.ajouterUnCoursToolStripMenuItem,
             this.modifierdétruireUnCoursToolStripMenuItem,
             this.afficherLesCoursDunEtudiantToolStripMenuItem,
-            this.paramètreReturnOutputToolStripMenuItem});
+            this.paramètreReturnOutputToolStripMenuItem,
+            this.vueToolStripMenuItem});
             this.exerciceToolStripMenuItem.Name = "exerciceToolStripMenuItem";
             this.exerciceToolStripMenuItem.Size = new System.Drawing.Size(95, 32);
             this.exerciceToolStripMenuItem.Text = "Exercice";
@@ -89,6 +91,13 @@
             this.paramètreReturnOutputToolStripMenuItem.Text = "ParamètreReturn Output";
             this.paramètreReturnOutputToolStripMenuItem.Click += new System.EventHandler(this.paramètreReturnOutputToolStripMenuItem_Click);
             // 
+            // vueToolStripMenuItem
+            // 
+            this.vueToolStripMenuItem.Name = "vueToolStripMenuItem";
+            this.vueToolStripMenuItem.Size = new System.Drawing.Size(367, 32);
+            this.vueToolStripMenuItem.Text = "Vue";
+            this.vueToolStripMenuItem.Click += new System.EventHandler(this.vueToolStripMenuItem_Click);
+            // 
             // menuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -116,5 +125,6 @@
         private System.Windows.Forms.ToolStripMenuItem modifierdétruireUnCoursToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afficherLesCoursDunEtudiantToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paramètreReturnOutputToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vueToolStripMenuItem;
     }
 }

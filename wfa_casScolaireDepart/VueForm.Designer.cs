@@ -55,6 +55,7 @@
             this.cmbCours.Name = "cmbCours";
             this.cmbCours.Size = new System.Drawing.Size(836, 30);
             this.cmbCours.TabIndex = 1;
+            this.cmbCours.SelectionChangeCommitted += new System.EventHandler(this.cmbCours_SelectionChangeCommitted);
             // 
             // lbno_cours
             // 
@@ -99,6 +100,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "VueForm";
             this.Text = "VueForm";
+            this.Load += new System.EventHandler(this.VueForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNote)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -102,6 +102,9 @@
         <Function Name="listerSelonNom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nom" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="ListerSessionDUNCours" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="noCours" Type="nchar" Mode="In" />
+        </Function>
         <EntityContainer Name="TT_BDscolaireModelStoreContainer">
           <EntitySet Name="tbl_cours" EntityType="Self.tbl_cours" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_etudiant" EntityType="Self.tbl_etudiant" Schema="dbo" store:Type="Tables" />
@@ -219,6 +222,9 @@
           <FunctionImport Name="listerSelonNom" ReturnType="Collection(TT_BDscolaireModel.listerSelonNom_Result)">
           <Parameter Name="nom" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ListerSessionDUNCours" ReturnType="Collection(String)">
+          <Parameter Name="noCours" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="listerCoursUnEtudiant_Result">
           <Property Type="String" Name="prenom" Nullable="false" MaxLength="50" />
@@ -299,6 +305,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ListerSessionDUNCours" FunctionName="TT_BDscolaireModel.Store.ListerSessionDUNCours" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

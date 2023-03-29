@@ -22,5 +22,20 @@ namespace wfa_casScolaireDepart
                 throw;
             }
         }
+
+        public List<string> ListerSession(string no_cours)
+        {
+            try
+            {
+                using (var context = new TT_BDscolaireEntities1())
+                {
+                    return context.ListerSessionDUNCours(no_cours).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

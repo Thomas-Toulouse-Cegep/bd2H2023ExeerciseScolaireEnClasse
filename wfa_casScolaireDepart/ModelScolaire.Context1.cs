@@ -66,5 +66,14 @@ namespace wfa_casScolaireDepart
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listerSelonNom_Result>("listerSelonNom", nomParameter);
         }
+    
+        public virtual ObjectResult<string> ListerSessionDUNCours(string noCours)
+        {
+            var noCoursParameter = noCours != null ?
+                new ObjectParameter("noCours", noCours) :
+                new ObjectParameter("noCours", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ListerSessionDUNCours", noCoursParameter);
+        }
     }
 }

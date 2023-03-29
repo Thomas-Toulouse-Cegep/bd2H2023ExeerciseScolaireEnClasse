@@ -61,5 +61,11 @@ namespace wfa_casScolaireDepart
             ParametreReturnOutputForm param = new ParametreReturnOutputForm();
             param.ShowDialog();
         }
+
+        private void vueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VueForm vueForm = new VueForm();
+            vueForm.ShowDialog();
+        }
     }
 }

@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DarkNet, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DarkNet.2.2.0-SNAPSHOT2\lib\net452\DarkNet.dll</HintPath>
+      <HintPath>..\packages\DarkNet.2.2.0\lib\net452\DarkNet.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -145,6 +145,12 @@
     <Compile Include="tbl_resultat.cs">
       <DependentUpon>ModelScolaire.tt</DependentUpon>
     </Compile>
+    <Compile Include="VueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VueForm.Designer.cs">
+      <DependentUpon>VueForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AfficherCourEtudiant.resx">
       <DependentUpon>AfficherCourEtudiant.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +175,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="VueForm.resx">
+      <DependentUpon>VueForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="ModelScolaire.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelScolaire.Designer.cs</LastGenOutput>
