@@ -40,18 +40,19 @@
             // 
             this.dgvNote.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNote.Location = new System.Drawing.Point(15, 284);
-            this.dgvNote.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvNote.Margin = new System.Windows.Forms.Padding(4);
             this.dgvNote.Name = "dgvNote";
             this.dgvNote.RowHeadersWidth = 51;
             this.dgvNote.RowTemplate.Height = 24;
             this.dgvNote.Size = new System.Drawing.Size(970, 318);
             this.dgvNote.TabIndex = 0;
+            this.dgvNote.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNote_CellEndEdit);
             // 
             // cmbCours
             // 
             this.cmbCours.FormattingEnabled = true;
             this.cmbCours.Location = new System.Drawing.Point(148, 61);
-            this.cmbCours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCours.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCours.Name = "cmbCours";
             this.cmbCours.Size = new System.Drawing.Size(836, 30);
             this.cmbCours.TabIndex = 1;
@@ -71,10 +72,11 @@
             // 
             this.cmbSession.FormattingEnabled = true;
             this.cmbSession.Location = new System.Drawing.Point(148, 161);
-            this.cmbSession.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbSession.Margin = new System.Windows.Forms.Padding(4);
             this.cmbSession.Name = "cmbSession";
             this.cmbSession.Size = new System.Drawing.Size(836, 30);
             this.cmbSession.TabIndex = 3;
+            this.cmbSession.SelectionChangeCommitted += new System.EventHandler(this.cmbSession_SelectionChangeCommitted);
             // 
             // lbSession
             // 
@@ -97,7 +99,7 @@
             this.Controls.Add(this.cmbCours);
             this.Controls.Add(this.dgvNote);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VueForm";
             this.Text = "VueForm";
             this.Load += new System.EventHandler(this.VueForm_Load);

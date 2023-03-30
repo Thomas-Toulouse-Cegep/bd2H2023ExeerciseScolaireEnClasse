@@ -11,6 +11,7 @@
         <AssociationConnector Association="TT_BDscolaireModel.FK_tbl_resultat_tbl_cours" ManuallyRouted="false" />
         <AssociationConnector Association="TT_BDscolaireModel.FK_tbl_resultat_tbl_etudiants" ManuallyRouted="false" />
         <AssociationConnector Association="TT_BDscolaireModel.tbl_prealable" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TT_BDscolaireModel.vueNoteEtudiant" Width="1.5" PointX="6.625" PointY="1.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

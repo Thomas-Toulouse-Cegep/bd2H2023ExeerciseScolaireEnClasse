@@ -41,6 +41,25 @@
           <Property Name="session" Type="nchar" MaxLength="3" Nullable="false" />
           <Property Name="note" Type="smallint" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TT_BDscolaire.dbo.vueNoteEtudiant' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vueNoteEtudiant">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Nom" />
+            <PropertyRef Name="Prenom" />
+            <PropertyRef Name="Numéro de cours" />
+            <PropertyRef Name="Nom cours" />
+            <PropertyRef Name="session" />
+          </Key>
+          <Property Name="ID" Type="nchar" MaxLength="7" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Numéro de cours" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="Nom cours" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="session" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="Note" Type="smallint" />
+        </EntityType>
         <Association Name="FK__tbl_preal__no_co__2A4B4B5E">
           <End Role="tbl_cours" Type="Self.tbl_cours" Multiplicity="1" />
           <End Role="tbl_prealable" Type="Self.tbl_prealable" Multiplicity="*" />
@@ -110,6 +129,17 @@
           <EntitySet Name="tbl_etudiant" EntityType="Self.tbl_etudiant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_prealable" EntityType="Self.tbl_prealable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_resultat" EntityType="Self.tbl_resultat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vueNoteEtudiant" EntityType="Self.vueNoteEtudiant" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vueNoteEtudiant].[ID] AS [ID], 
+    [vueNoteEtudiant].[Nom] AS [Nom], 
+    [vueNoteEtudiant].[Prenom] AS [Prenom], 
+    [vueNoteEtudiant].[Numéro de cours] AS [Numéro de cours], 
+    [vueNoteEtudiant].[Nom cours] AS [Nom cours], 
+    [vueNoteEtudiant].[session] AS [session], 
+    [vueNoteEtudiant].[Note] AS [Note]
+    FROM [dbo].[vueNoteEtudiant] AS [vueNoteEtudiant]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__tbl_preal__no_co__2A4B4B5E" Association="Self.FK__tbl_preal__no_co__2A4B4B5E">
             <End Role="tbl_cours" EntitySet="tbl_cours" />
             <End Role="tbl_prealable" EntitySet="tbl_prealable" />
@@ -225,6 +255,7 @@
           <FunctionImport Name="ListerSessionDUNCours" ReturnType="Collection(String)">
           <Parameter Name="noCours" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="vueNoteEtudiants" EntityType="TT_BDscolaireModel.vueNoteEtudiant" />
         </EntityContainer>
         <ComplexType Name="listerCoursUnEtudiant_Result">
           <Property Type="String" Name="prenom" Nullable="false" MaxLength="50" />
@@ -239,6 +270,23 @@
           <Property Type="String" Name="prenom" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="email" Nullable="true" MaxLength="100" />
         </ComplexType>
+        <EntityType Name="vueNoteEtudiant">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Nom" />
+            <PropertyRef Name="Prenom" />
+            <PropertyRef Name="Numéro_de_cours" />
+            <PropertyRef Name="Nom_cours" />
+            <PropertyRef Name="session" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Numéro_de_cours" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="Nom_cours" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="session" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="Note" Type="Int16" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -306,6 +354,19 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ListerSessionDUNCours" FunctionName="TT_BDscolaireModel.Store.ListerSessionDUNCours" />
+          <EntitySetMapping Name="vueNoteEtudiants">
+            <EntityTypeMapping TypeName="TT_BDscolaireModel.vueNoteEtudiant">
+              <MappingFragment StoreEntitySet="vueNoteEtudiant">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="Nom_cours" ColumnName="Nom cours" />
+                <ScalarProperty Name="Numéro_de_cours" ColumnName="Numéro de cours" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

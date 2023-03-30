@@ -151,6 +151,9 @@
     <Compile Include="VueForm.Designer.cs">
       <DependentUpon>VueForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="vueNoteEtudiant.cs">
+      <DependentUpon>ModelScolaire.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AfficherCourEtudiant.resx">
       <DependentUpon>AfficherCourEtudiant.cs</DependentUpon>
     </EmbeddedResource>

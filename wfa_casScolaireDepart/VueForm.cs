@@ -14,9 +14,9 @@ namespace wfa_casScolaireDepart
     public partial class VueForm : Form
     {
         private Color clrBackground = Color.FromArgb(32, 32, 32);
-        private Color clrFont = Color.White;
+        private Color clrFont = Color.Gray;
         private Color clrTbBack = Color.FromArgb(23, 23, 23);
-
+        private TT_BDscolaireEntities1 context;
         private ManagerCours managerCours = new ManagerCours();
         private ManagerResultat managerResultat = new ManagerResultat();
 
@@ -29,6 +29,18 @@ namespace wfa_casScolaireDepart
             foreach (TextBox tb in this.Controls.OfType<TextBox>())
             {
                 tb.BackColor = clrTbBack;
+                //Maybe do more here...
+            }
+            foreach (DataGridView tb in this.Controls.OfType<DataGridView>())
+            {
+                tb.BackColor = clrTbBack;
+                tb.ForeColor = clrFont;
+                //Maybe do more here...
+            }
+            foreach (ComboBox tb in this.Controls.OfType<ComboBox>())
+            {
+                tb.BackColor = clrTbBack;
+                tb.ForeColor = clrFont;
                 //Maybe do more here...
             }
             //You could now add more controls in a similar fashion.
@@ -61,7 +73,34 @@ namespace wfa_casScolaireDepart
             cmbSession.ValueMember = "session";
             cmbSession.DisplayMember = "session";
             cmbSession.DataSource = managerResultat.ListerSession(cmbCours.SelectedValue.ToString());
-          
+        }
+
+        private void cmbSession_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string noCours = cmbCours.SelectedValue.ToString();
+            string session = cmbSession.SelectedValue.ToString();
+            dgvNote.DataSource = managerResultat.ListerResultat(noCours, session, ref context);
+            dgvNote.Columns["session"].Visible = false;
+            dgvNote.Columns["Numéro_de_cours"].Visible = false;
+            dgvNote.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvNote.Columns["no_da"].ReadOnly = true;
+        }
+
+        private void dgvNote_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            enregistrer();
+        }
+
+        private void enregistrer()
+        {
+            try
+            {
+                managerResultat.enregistrerLaNote(ref context);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

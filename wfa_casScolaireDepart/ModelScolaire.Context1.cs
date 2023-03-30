@@ -30,6 +30,7 @@ namespace wfa_casScolaireDepart
         public virtual DbSet<tbl_cours> tbl_cours { get; set; }
         public virtual DbSet<tbl_etudiant> tbl_etudiant { get; set; }
         public virtual DbSet<tbl_resultat> tbl_resultat { get; set; }
+        public virtual DbSet<vueNoteEtudiant> vueNoteEtudiants { get; set; }
     
         public virtual ObjectResult<listerCoursUnEtudiant_Result> listerCoursUnEtudiant(string no_da)
         {
