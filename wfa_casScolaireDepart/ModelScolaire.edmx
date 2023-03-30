@@ -124,6 +124,12 @@ warning 6002: The table/view 'TT_BDscolaire.dbo.vueNoteEtudiant' does not have a
         <Function Name="ListerSessionDUNCours" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="noCours" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="modifierNote" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="session" Type="nchar" Mode="In" />
+          <Parameter Name="noDa" Type="nchar" Mode="In" />
+          <Parameter Name="noCours" Type="nchar" Mode="In" />
+          <Parameter Name="note" Type="smallint" Mode="In" />
+        </Function>
         <EntityContainer Name="TT_BDscolaireModelStoreContainer">
           <EntitySet Name="tbl_cours" EntityType="Self.tbl_cours" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_etudiant" EntityType="Self.tbl_etudiant" Schema="dbo" store:Type="Tables" />
@@ -256,6 +262,12 @@ warning 6002: The table/view 'TT_BDscolaire.dbo.vueNoteEtudiant' does not have a
           <Parameter Name="noCours" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="vueNoteEtudiants" EntityType="TT_BDscolaireModel.vueNoteEtudiant" />
+          <FunctionImport Name="modifierNote">
+            <Parameter Name="session" Mode="In" Type="String" />
+            <Parameter Name="noDa" Mode="In" Type="String" />
+            <Parameter Name="noCours" Mode="In" Type="String" />
+            <Parameter Name="note" Mode="In" Type="Int16" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="listerCoursUnEtudiant_Result">
           <Property Type="String" Name="prenom" Nullable="false" MaxLength="50" />
@@ -366,7 +378,18 @@ warning 6002: The table/view 'TT_BDscolaire.dbo.vueNoteEtudiant' does not have a
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="TT_BDscolaireModel.vueNoteEtudiant">
+              <ModificationFunctionMapping>
+                <UpdateFunction FunctionName="TT_BDscolaireModel.Store.modifierNote">
+                  <ScalarProperty Name="Note" ParameterName="note" Version="Current" />
+                  <ScalarProperty Name="Numéro_de_cours" ParameterName="noCours" Version="Current" />
+                  <ScalarProperty Name="ID" ParameterName="noDa" Version="Current" />
+                  <ScalarProperty Name="session" ParameterName="session" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="modifierNote" FunctionName="TT_BDscolaireModel.Store.modifierNote" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,6 +12,7 @@ namespace wfa_casScolaireDepart
         {
             try
             {
+                context = new TT_BDscolaireEntities1();
                 return context.vueNoteEtudiants.Where(r => r.Numéro_de_cours == noCours && r.session == session).ToList();
             }
             catch (Exception)

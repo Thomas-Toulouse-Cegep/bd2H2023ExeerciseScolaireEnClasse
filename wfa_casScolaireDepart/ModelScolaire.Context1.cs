@@ -76,5 +76,26 @@ namespace wfa_casScolaireDepart
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ListerSessionDUNCours", noCoursParameter);
         }
+    
+        public virtual int modifierNote(string session, string noDa, string noCours, Nullable<short> note)
+        {
+            var sessionParameter = session != null ?
+                new ObjectParameter("session", session) :
+                new ObjectParameter("session", typeof(string));
+    
+            var noDaParameter = noDa != null ?
+                new ObjectParameter("noDa", noDa) :
+                new ObjectParameter("noDa", typeof(string));
+    
+            var noCoursParameter = noCours != null ?
+                new ObjectParameter("noCours", noCours) :
+                new ObjectParameter("noCours", typeof(string));
+    
+            var noteParameter = note.HasValue ?
+                new ObjectParameter("note", note) :
+                new ObjectParameter("note", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modifierNote", sessionParameter, noDaParameter, noCoursParameter, noteParameter);
+        }
     }
 }

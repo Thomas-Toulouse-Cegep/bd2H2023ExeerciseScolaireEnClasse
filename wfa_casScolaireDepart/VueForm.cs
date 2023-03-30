@@ -83,7 +83,10 @@ namespace wfa_casScolaireDepart
             dgvNote.Columns["session"].Visible = false;
             dgvNote.Columns["Numéro_de_cours"].Visible = false;
             dgvNote.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvNote.Columns["no_da"].ReadOnly = true;
+            dgvNote.Columns["ID"].ReadOnly = true;
+            dgvNote.Columns["Nom"].ReadOnly = true;
+            dgvNote.Columns["Prenom"].ReadOnly = true;
+            dgvNote.Columns["Numéro_de_cours"].ReadOnly = true;
         }
 
         private void dgvNote_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -95,7 +98,11 @@ namespace wfa_casScolaireDepart
         {
             try
             {
-                managerResultat.enregistrerLaNote(ref context);
+                int nbLigneAffecter = managerResultat.enregistrerLaNote(ref context);
+                if (nbLigneAffecter >= 0)
+                {
+                    MessageBox.Show("penis");
+                }
             }
             catch (Exception ex)
             {
