@@ -41,6 +41,7 @@
             this.noCoursLabel = new System.Windows.Forms.Label();
             this.noCoursTextBox = new System.Windows.Forms.TextBox();
             this.detruireButton = new System.Windows.Forms.Button();
+            this.btnModiferAvecattach = new System.Windows.Forms.Button();
             this.rechercherGroupBox.SuspendLayout();
             this.CoursGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -192,6 +193,18 @@
             this.detruireButton.TabIndex = 0;
             this.detruireButton.Text = "Détruire";
             this.detruireButton.UseVisualStyleBackColor = true;
+            // 
+            // btnModiferAvecattach
+            // 
+            this.btnModiferAvecattach.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnModiferAvecattach.Location = new System.Drawing.Point(43, 230);
+            this.btnModiferAvecattach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnModiferAvecattach.Name = "btnModiferAvecattach";
+            this.btnModiferAvecattach.Size = new System.Drawing.Size(212, 44);
+            this.btnModiferAvecattach.TabIndex = 8;
+            this.btnModiferAvecattach.Text = "Modifier avec Attach";
+            this.btnModiferAvecattach.UseVisualStyleBackColor = true;
+            this.btnModiferAvecattach.Click += new System.EventHandler(this.btnModiferAvecattach_Click);
             // 
             // modifierDetruireForm
             // 

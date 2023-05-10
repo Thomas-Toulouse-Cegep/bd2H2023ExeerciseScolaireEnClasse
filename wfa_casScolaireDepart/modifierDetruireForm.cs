@@ -13,9 +13,11 @@ namespace wfa_casScolaireDepart
 {
     public partial class modifierDetruireForm : Form
     {
+
         private Color clrBackground = Color.FromArgb(32, 32, 32);
         private Color clrFont = Color.White;
         private Color clrTbBack = Color.FromArgb(23, 23, 23);
+
         private tbl_cours coursNonModif;
 
         public modifierDetruireForm()
@@ -79,8 +81,10 @@ namespace wfa_casScolaireDepart
             int nbDeligneAffectee = MonManger.ModifierCours(coursModifier, coursNonModif);
         }
 
+
         private void nomCoursComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
     }
 }
