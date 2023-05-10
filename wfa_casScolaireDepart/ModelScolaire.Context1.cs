@@ -30,6 +30,10 @@ namespace wfa_casScolaireDepart
         public virtual DbSet<tbl_cours> tbl_cours { get; set; }
         public virtual DbSet<tbl_etudiant> tbl_etudiant { get; set; }
         public virtual DbSet<tbl_resultat> tbl_resultat { get; set; }
+        public virtual DbSet<testCheck> testChecks { get; set; }
+        public virtual DbSet<testOrdre2> testOrdre2 { get; set; }
+        public virtual DbSet<vueEtudiantNoteAnglai> vueEtudiantNoteAnglais { get; set; }
+        public virtual DbSet<vueFonctionAgregat> vueFonctionAgregats { get; set; }
         public virtual DbSet<vueNoteEtudiant> vueNoteEtudiants { get; set; }
     
         public virtual ObjectResult<listerCoursUnEtudiant_Result> listerCoursUnEtudiant(string no_da)
@@ -75,6 +79,31 @@ namespace wfa_casScolaireDepart
                 new ObjectParameter("noCours", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ListerSessionDUNCours", noCoursParameter);
+        }
+    
+        public virtual int sp_ajout_historique(Nullable<int> no_matierePremiere, Nullable<int> id_employe, Nullable<int> no_projet, Nullable<int> quantitePrise, string id_matierePremiere)
+        {
+            var no_matierePremiereParameter = no_matierePremiere.HasValue ?
+                new ObjectParameter("no_matierePremiere", no_matierePremiere) :
+                new ObjectParameter("no_matierePremiere", typeof(int));
+    
+            var id_employeParameter = id_employe.HasValue ?
+                new ObjectParameter("id_employe", id_employe) :
+                new ObjectParameter("id_employe", typeof(int));
+    
+            var no_projetParameter = no_projet.HasValue ?
+                new ObjectParameter("no_projet", no_projet) :
+                new ObjectParameter("no_projet", typeof(int));
+    
+            var quantitePriseParameter = quantitePrise.HasValue ?
+                new ObjectParameter("quantitePrise", quantitePrise) :
+                new ObjectParameter("quantitePrise", typeof(int));
+    
+            var id_matierePremiereParameter = id_matierePremiere != null ?
+                new ObjectParameter("id_matierePremiere", id_matierePremiere) :
+                new ObjectParameter("id_matierePremiere", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ajout_historique", no_matierePremiereParameter, id_employeParameter, no_projetParameter, quantitePriseParameter, id_matierePremiereParameter);
         }
     
         public virtual int modifierNote(string session, string noDa, string noCours, Nullable<short> note)

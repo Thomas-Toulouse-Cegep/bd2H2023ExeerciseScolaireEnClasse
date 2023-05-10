@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.Entity.Core;
 
 namespace wfa_casScolaireDepart
 {
@@ -38,19 +42,27 @@ namespace wfa_casScolaireDepart
 
         public int enregistrerLaNote(ref TT_BDscolaireEntities1 context)
         {
-            int nbligneAffecter = 0;
+            int r = 0;
             try
             {
                 if (context.ChangeTracker.HasChanges())
                 {
-                    nbligneAffecter = context.SaveChanges();
+                    r = context.SaveChanges();
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                if (ex.InnerException.InnerException is UpdateException)
+                {
+
                 }
             }
             catch (Exception)
             {
                 throw;
             }
-            return nbligneAffecter;
+
+            return r;
         }
 
         public List<string> ListerSession(string no_cours)

@@ -145,6 +145,18 @@
     <Compile Include="tbl_resultat.cs">
       <DependentUpon>ModelScolaire.tt</DependentUpon>
     </Compile>
+    <Compile Include="testCheck.cs">
+      <DependentUpon>ModelScolaire.tt</DependentUpon>
+    </Compile>
+    <Compile Include="testOrdre2.cs">
+      <DependentUpon>ModelScolaire.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vueEtudiantNoteAnglai.cs">
+      <DependentUpon>ModelScolaire.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vueFonctionAgregat.cs">
+      <DependentUpon>ModelScolaire.tt</DependentUpon>
+    </Compile>
     <Compile Include="VueForm.cs">
       <SubType>Form</SubType>
     </Compile>

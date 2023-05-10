@@ -11,7 +11,11 @@
         <AssociationConnector Association="TT_BDscolaireModel.FK_tbl_resultat_tbl_cours" ManuallyRouted="false" />
         <AssociationConnector Association="TT_BDscolaireModel.FK_tbl_resultat_tbl_etudiants" ManuallyRouted="false" />
         <AssociationConnector Association="TT_BDscolaireModel.tbl_prealable" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TT_BDscolaireModel.vueNoteEtudiant" Width="1.5" PointX="6.625" PointY="1.75" />
+        <EntityTypeShape EntityType="TT_BDscolaireModel.testCheck" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="TT_BDscolaireModel.testOrdre2" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="TT_BDscolaireModel.vueEtudiantNoteAnglai" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="TT_BDscolaireModel.vueFonctionAgregat" Width="1.5" PointX="8.625" PointY="0.875" />
+        <EntityTypeShape EntityType="TT_BDscolaireModel.vueNoteEtudiant" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

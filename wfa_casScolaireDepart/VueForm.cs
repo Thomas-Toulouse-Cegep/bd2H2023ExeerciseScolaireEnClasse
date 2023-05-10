@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace wfa_casScolaireDepart
 {
@@ -62,6 +64,10 @@ namespace wfa_casScolaireDepart
                 cmbCours.ValueMember = "no_cours";
                 cmbCours.DisplayMember = "nom_cours";
             }
+            catch (DbUpdateException dbex)
+            {
+                MessageBox.Show(dbex.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -101,12 +107,13 @@ namespace wfa_casScolaireDepart
                 int nbLigneAffecter = managerResultat.enregistrerLaNote(ref context);
                 if (nbLigneAffecter >= 0)
                 {
-                    MessageBox.Show("penis");
+                    MessageBox.Show("oui");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+               // throw new Exception(this.InnerException.InnerException.Message);
             }
         }
     }
