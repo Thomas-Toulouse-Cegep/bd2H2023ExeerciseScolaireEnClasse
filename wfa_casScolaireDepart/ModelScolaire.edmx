@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TT_BDscolaireModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TT_BDscolaireModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_cours">
           <Key>
             <PropertyRef Name="no_cours" />
@@ -40,6 +40,83 @@
           <Property Name="no_da" Type="nchar" MaxLength="7" Nullable="false" />
           <Property Name="session" Type="nchar" MaxLength="3" Nullable="false" />
           <Property Name="note" Type="smallint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TT_BDscolaire.dbo.testCheck' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="testCheck">
+          <Key>
+            <PropertyRef Name="no_cours" />
+            <PropertyRef Name="no_da" />
+            <PropertyRef Name="session" />
+          </Key>
+          <Property Name="no_cours" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="no_da" Type="nchar" MaxLength="7" Nullable="false" />
+          <Property Name="session" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="note" Type="smallint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TT_BDscolaire.dbo.testOrdre2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="testOrdre2">
+          <Key>
+            <PropertyRef Name="no_da" />
+            <PropertyRef Name="nom" />
+            <PropertyRef Name="prenom" />
+          </Key>
+          <Property Name="no_da" Type="nchar" MaxLength="7" Nullable="false" />
+          <Property Name="nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TT_BDscolaire.dbo.vueEtudiantNoteAnglais' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vueEtudiantNoteAnglais">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="lastname" />
+            <PropertyRef Name="firstname" />
+            <PropertyRef Name="course number" />
+            <PropertyRef Name="course name" />
+            <PropertyRef Name="session" />
+          </Key>
+          <Property Name="ID" Type="nchar" MaxLength="7" Nullable="false" />
+          <Property Name="lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="firstname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="course number" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="course name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="session" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="rating" Type="smallint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TT_BDscolaire.dbo.vueFonctionAgregat' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vueFonctionAgregat">
+          <Key>
+            <PropertyRef Name="no_da" />
+            <PropertyRef Name="nom" />
+            <PropertyRef Name="prenom" />
+          </Key>
+          <Property Name="no_da" Type="nchar" MaxLength="7" Nullable="false" />
+          <Property Name="nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Moyenne" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TT_BDscolaire.dbo.vueNoteEtudiant' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vueNoteEtudiant">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Nom" />
+            <PropertyRef Name="Prenom" />
+            <PropertyRef Name="Numéro de cours" />
+            <PropertyRef Name="Nom cours" />
+            <PropertyRef Name="session" />
+          </Key>
+          <Property Name="ID" Type="nchar" MaxLength="7" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Numéro de cours" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="Nom cours" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="session" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="Note" Type="smallint" />
         </EntityType>
         <Association Name="FK__tbl_preal__no_co__2A4B4B5E">
           <End Role="tbl_cours" Type="Self.tbl_cours" Multiplicity="1" />
@@ -89,11 +166,86 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="compterCours" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="session" Type="char" Mode="In" />
+        </Function>
+        <Function Name="compterCoursOutPut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="session" Type="char" Mode="In" />
+          <Parameter Name="nbre_cours" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="listerCoursUnEtudiant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="no_da" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="listerSelonNom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nom" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ListerSessionDUNCours" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="noCours" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="modifierNote" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="session" Type="nchar" Mode="In" />
+          <Parameter Name="noDa" Type="nchar" Mode="In" />
+          <Parameter Name="noCours" Type="nchar" Mode="In" />
+          <Parameter Name="note" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="sp_ajout_historique" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="no_matierePremiere" Type="int" Mode="In" />
+          <Parameter Name="id_employe" Type="int" Mode="In" />
+          <Parameter Name="no_projet" Type="int" Mode="In" />
+          <Parameter Name="quantitePrise" Type="int" Mode="In" />
+          <Parameter Name="id_matierePremiere" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="TT_BDscolaireModelStoreContainer">
           <EntitySet Name="tbl_cours" EntityType="Self.tbl_cours" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_etudiant" EntityType="Self.tbl_etudiant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_prealable" EntityType="Self.tbl_prealable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_resultat" EntityType="Self.tbl_resultat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="testCheck" EntityType="Self.testCheck" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [testCheck].[no_cours] AS [no_cours], 
+    [testCheck].[no_da] AS [no_da], 
+    [testCheck].[session] AS [session], 
+    [testCheck].[note] AS [note]
+    FROM [dbo].[testCheck] AS [testCheck]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="testOrdre2" EntityType="Self.testOrdre2" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [testOrdre2].[no_da] AS [no_da], 
+    [testOrdre2].[nom] AS [nom], 
+    [testOrdre2].[prenom] AS [prenom], 
+    [testOrdre2].[email] AS [email]
+    FROM [dbo].[testOrdre2] AS [testOrdre2]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vueEtudiantNoteAnglais" EntityType="Self.vueEtudiantNoteAnglais" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vueEtudiantNoteAnglais].[ID] AS [ID], 
+    [vueEtudiantNoteAnglais].[lastname] AS [lastname], 
+    [vueEtudiantNoteAnglais].[firstname] AS [firstname], 
+    [vueEtudiantNoteAnglais].[course number] AS [course number], 
+    [vueEtudiantNoteAnglais].[course name] AS [course name], 
+    [vueEtudiantNoteAnglais].[session] AS [session], 
+    [vueEtudiantNoteAnglais].[rating] AS [rating]
+    FROM [dbo].[vueEtudiantNoteAnglais] AS [vueEtudiantNoteAnglais]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vueFonctionAgregat" EntityType="Self.vueFonctionAgregat" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vueFonctionAgregat].[no_da] AS [no_da], 
+    [vueFonctionAgregat].[nom] AS [nom], 
+    [vueFonctionAgregat].[prenom] AS [prenom], 
+    [vueFonctionAgregat].[Moyenne] AS [Moyenne]
+    FROM [dbo].[vueFonctionAgregat] AS [vueFonctionAgregat]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vueNoteEtudiant" EntityType="Self.vueNoteEtudiant" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vueNoteEtudiant].[ID] AS [ID], 
+    [vueNoteEtudiant].[Nom] AS [Nom], 
+    [vueNoteEtudiant].[Prenom] AS [Prenom], 
+    [vueNoteEtudiant].[Numéro de cours] AS [Numéro de cours], 
+    [vueNoteEtudiant].[Nom cours] AS [Nom cours], 
+    [vueNoteEtudiant].[session] AS [session], 
+    [vueNoteEtudiant].[Note] AS [Note]
+    FROM [dbo].[vueNoteEtudiant] AS [vueNoteEtudiant]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__tbl_preal__no_co__2A4B4B5E" Association="Self.FK__tbl_preal__no_co__2A4B4B5E">
             <End Role="tbl_cours" EntitySet="tbl_cours" />
             <End Role="tbl_prealable" EntitySet="tbl_prealable" />
@@ -111,8 +263,7 @@
             <End Role="tbl_resultat" EntitySet="tbl_resultat" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TT_BDscolaireModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -194,7 +345,121 @@
             <End Role="tbl_cours" EntitySet="tbl_cours" />
             <End Role="tbl_cours1" EntitySet="tbl_cours" />
           </AssociationSet>
+          <FunctionImport Name="listerCoursUnEtudiant" ReturnType="Collection(TT_BDscolaireModel.listerCoursUnEtudiant_Result)">
+          <Parameter Name="no_da" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="compterCours" ReturnType="Collection(Int32)">
+          <Parameter Name="session" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="compterCoursOutPut">
+            <Parameter Name="session" Mode="In" Type="String" />
+            <Parameter Name="nbre_cours" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="listerSelonNom" ReturnType="Collection(TT_BDscolaireModel.listerSelonNom_Result)">
+          <Parameter Name="nom" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ListerSessionDUNCours" ReturnType="Collection(String)">
+          <Parameter Name="noCours" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="testChecks" EntityType="TT_BDscolaireModel.testCheck" />
+          <EntitySet Name="testOrdre2" EntityType="TT_BDscolaireModel.testOrdre2" />
+          <EntitySet Name="vueEtudiantNoteAnglais" EntityType="TT_BDscolaireModel.vueEtudiantNoteAnglai" />
+          <EntitySet Name="vueFonctionAgregats" EntityType="TT_BDscolaireModel.vueFonctionAgregat" />
+          <FunctionImport Name="sp_ajout_historique">
+            <Parameter Name="no_matierePremiere" Mode="In" Type="Int32" />
+            <Parameter Name="id_employe" Mode="In" Type="Int32" />
+            <Parameter Name="no_projet" Mode="In" Type="Int32" />
+            <Parameter Name="quantitePrise" Mode="In" Type="Int32" />
+            <Parameter Name="id_matierePremiere" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="vueNoteEtudiants" EntityType="TT_BDscolaireModel.vueNoteEtudiant" />
+          <FunctionImport Name="modifierNote">
+            <Parameter Name="session" Mode="In" Type="String" />
+            <Parameter Name="noDa" Mode="In" Type="String" />
+            <Parameter Name="noCours" Mode="In" Type="String" />
+            <Parameter Name="note" Mode="In" Type="Int16" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="listerCoursUnEtudiant_Result">
+          <Property Type="String" Name="prenom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="no_cours" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="nom_cours" Nullable="false" MaxLength="50" />
+          <Property Type="Int16" Name="note" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="listerSelonNom_Result">
+          <Property Type="String" Name="no_da" Nullable="false" MaxLength="7" />
+          <Property Type="String" Name="nom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prenom" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="testCheck">
+          <Key>
+            <PropertyRef Name="no_cours" />
+            <PropertyRef Name="no_da" />
+            <PropertyRef Name="session" />
+          </Key>
+          <Property Name="no_cours" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="no_da" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
+          <Property Name="session" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="note" Type="Int16" />
+        </EntityType>
+        <EntityType Name="testOrdre2">
+          <Key>
+            <PropertyRef Name="no_da" />
+            <PropertyRef Name="nom" />
+            <PropertyRef Name="prenom" />
+          </Key>
+          <Property Name="no_da" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vueEtudiantNoteAnglai">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="lastname" />
+            <PropertyRef Name="firstname" />
+            <PropertyRef Name="course_number" />
+            <PropertyRef Name="course_name" />
+            <PropertyRef Name="session" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
+          <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="course_number" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="course_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="session" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="rating" Type="Int16" />
+        </EntityType>
+        <EntityType Name="vueFonctionAgregat">
+          <Key>
+            <PropertyRef Name="no_da" />
+            <PropertyRef Name="nom" />
+            <PropertyRef Name="prenom" />
+          </Key>
+          <Property Name="no_da" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Moyenne" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vueNoteEtudiant">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Nom" />
+            <PropertyRef Name="Prenom" />
+            <PropertyRef Name="Numéro_de_cours" />
+            <PropertyRef Name="Nom_cours" />
+            <PropertyRef Name="session" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Numéro_de_cours" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="Nom_cours" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="session" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="Note" Type="Int16" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -238,6 +503,88 @@
               <ScalarProperty Name="no_cours" ColumnName="no_coursPrealable" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="listerCoursUnEtudiant" FunctionName="TT_BDscolaireModel.Store.listerCoursUnEtudiant">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TT_BDscolaireModel.listerCoursUnEtudiant_Result">
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="no_cours" ColumnName="no_cours" />
+                <ScalarProperty Name="nom_cours" ColumnName="nom_cours" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="compterCours" FunctionName="TT_BDscolaireModel.Store.compterCours" />
+          <FunctionImportMapping FunctionImportName="compterCoursOutPut" FunctionName="TT_BDscolaireModel.Store.compterCoursOutPut" />
+          <FunctionImportMapping FunctionImportName="listerSelonNom" FunctionName="TT_BDscolaireModel.Store.listerSelonNom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TT_BDscolaireModel.listerSelonNom_Result">
+                <ScalarProperty Name="no_da" ColumnName="no_da" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ListerSessionDUNCours" FunctionName="TT_BDscolaireModel.Store.ListerSessionDUNCours" />
+          <EntitySetMapping Name="testChecks">
+            <EntityTypeMapping TypeName="TT_BDscolaireModel.testCheck">
+              <MappingFragment StoreEntitySet="testCheck">
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="no_da" ColumnName="no_da" />
+                <ScalarProperty Name="no_cours" ColumnName="no_cours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="testOrdre2">
+            <EntityTypeMapping TypeName="TT_BDscolaireModel.testOrdre2">
+              <MappingFragment StoreEntitySet="testOrdre2">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="no_da" ColumnName="no_da" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vueEtudiantNoteAnglais">
+            <EntityTypeMapping TypeName="TT_BDscolaireModel.vueEtudiantNoteAnglai">
+              <MappingFragment StoreEntitySet="vueEtudiantNoteAnglais">
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="course_name" ColumnName="course name" />
+                <ScalarProperty Name="course_number" ColumnName="course number" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vueFonctionAgregats">
+            <EntityTypeMapping TypeName="TT_BDscolaireModel.vueFonctionAgregat">
+              <MappingFragment StoreEntitySet="vueFonctionAgregat">
+                <ScalarProperty Name="Moyenne" ColumnName="Moyenne" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="no_da" ColumnName="no_da" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_ajout_historique" FunctionName="TT_BDscolaireModel.Store.sp_ajout_historique" />
+          <EntitySetMapping Name="vueNoteEtudiants">
+            <EntityTypeMapping TypeName="TT_BDscolaireModel.vueNoteEtudiant">
+              <MappingFragment StoreEntitySet="vueNoteEtudiant">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="session" ColumnName="session" />
+                <ScalarProperty Name="Nom_cours" ColumnName="Nom cours" />
+                <ScalarProperty Name="Numéro_de_cours" ColumnName="Numéro de cours" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="modifierNote" FunctionName="TT_BDscolaireModel.Store.modifierNote" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,6 +12,8 @@ namespace wfa_casScolaireDepart
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class TT_BDscolaireEntities1 : DbContext
     {
@@ -28,5 +30,101 @@ namespace wfa_casScolaireDepart
         public virtual DbSet<tbl_cours> tbl_cours { get; set; }
         public virtual DbSet<tbl_etudiant> tbl_etudiant { get; set; }
         public virtual DbSet<tbl_resultat> tbl_resultat { get; set; }
+        public virtual DbSet<testCheck> testChecks { get; set; }
+        public virtual DbSet<testOrdre2> testOrdre2 { get; set; }
+        public virtual DbSet<vueEtudiantNoteAnglai> vueEtudiantNoteAnglais { get; set; }
+        public virtual DbSet<vueFonctionAgregat> vueFonctionAgregats { get; set; }
+        public virtual DbSet<vueNoteEtudiant> vueNoteEtudiants { get; set; }
+    
+        public virtual ObjectResult<listerCoursUnEtudiant_Result> listerCoursUnEtudiant(string no_da)
+        {
+            var no_daParameter = no_da != null ?
+                new ObjectParameter("no_da", no_da) :
+                new ObjectParameter("no_da", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listerCoursUnEtudiant_Result>("listerCoursUnEtudiant", no_daParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> compterCours(string session)
+        {
+            var sessionParameter = session != null ?
+                new ObjectParameter("session", session) :
+                new ObjectParameter("session", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("compterCours", sessionParameter);
+        }
+    
+        public virtual int compterCoursOutPut(string session, ObjectParameter nbre_cours)
+        {
+            var sessionParameter = session != null ?
+                new ObjectParameter("session", session) :
+                new ObjectParameter("session", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("compterCoursOutPut", sessionParameter, nbre_cours);
+        }
+    
+        public virtual ObjectResult<listerSelonNom_Result> listerSelonNom(string nom)
+        {
+            var nomParameter = nom != null ?
+                new ObjectParameter("nom", nom) :
+                new ObjectParameter("nom", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listerSelonNom_Result>("listerSelonNom", nomParameter);
+        }
+    
+        public virtual ObjectResult<string> ListerSessionDUNCours(string noCours)
+        {
+            var noCoursParameter = noCours != null ?
+                new ObjectParameter("noCours", noCours) :
+                new ObjectParameter("noCours", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ListerSessionDUNCours", noCoursParameter);
+        }
+    
+        public virtual int sp_ajout_historique(Nullable<int> no_matierePremiere, Nullable<int> id_employe, Nullable<int> no_projet, Nullable<int> quantitePrise, string id_matierePremiere)
+        {
+            var no_matierePremiereParameter = no_matierePremiere.HasValue ?
+                new ObjectParameter("no_matierePremiere", no_matierePremiere) :
+                new ObjectParameter("no_matierePremiere", typeof(int));
+    
+            var id_employeParameter = id_employe.HasValue ?
+                new ObjectParameter("id_employe", id_employe) :
+                new ObjectParameter("id_employe", typeof(int));
+    
+            var no_projetParameter = no_projet.HasValue ?
+                new ObjectParameter("no_projet", no_projet) :
+                new ObjectParameter("no_projet", typeof(int));
+    
+            var quantitePriseParameter = quantitePrise.HasValue ?
+                new ObjectParameter("quantitePrise", quantitePrise) :
+                new ObjectParameter("quantitePrise", typeof(int));
+    
+            var id_matierePremiereParameter = id_matierePremiere != null ?
+                new ObjectParameter("id_matierePremiere", id_matierePremiere) :
+                new ObjectParameter("id_matierePremiere", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ajout_historique", no_matierePremiereParameter, id_employeParameter, no_projetParameter, quantitePriseParameter, id_matierePremiereParameter);
+        }
+    
+        public virtual int modifierNote(string session, string noDa, string noCours, Nullable<short> note)
+        {
+            var sessionParameter = session != null ?
+                new ObjectParameter("session", session) :
+                new ObjectParameter("session", typeof(string));
+    
+            var noDaParameter = noDa != null ?
+                new ObjectParameter("noDa", noDa) :
+                new ObjectParameter("noDa", typeof(string));
+    
+            var noCoursParameter = noCours != null ?
+                new ObjectParameter("noCours", noCours) :
+                new ObjectParameter("noCours", typeof(string));
+    
+            var noteParameter = note.HasValue ?
+                new ObjectParameter("note", note) :
+                new ObjectParameter("note", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("modifierNote", sessionParameter, noDaParameter, noCoursParameter, noteParameter);
+        }
     }
 }
